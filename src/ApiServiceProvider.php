@@ -31,7 +31,9 @@ class ApiServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerSSO();
+        $this->registerLHP();
         $this->registerLoanzify();
+        $this->registerSmartApp();
     }
 
     /**
