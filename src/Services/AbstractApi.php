@@ -51,7 +51,7 @@ class AbstractApi
      */
     public function delete(string $endpoint, $payload = [])
     {
-        return $this->call('PUT', $endpoint, [], $payload);
+        return $this->call('DELETE', $endpoint, [], $payload);
     }
 
     /**
