@@ -1,5 +1,5 @@
 {
-    "name": "lenderhub/services",
+    "name": "LenderHub/services",
     "description": "Service API connector between LHP services",
     "type": "library",
     "require": {
