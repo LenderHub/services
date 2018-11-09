@@ -14,7 +14,7 @@ abstract class ServiceCommand
      * The payload of the command
      * @return array
      */
-    abstract protected function payload(): array;
+    abstract public function payload(): array;
 
     /**
      * Serialize the command for use in HTTP requests
