@@ -4,6 +4,10 @@ namespace LHP\Services\Commands;
 
 class ServiceCommandHandler implements \LHP\Services\Contracts\ServiceCommandHandler
 {
+    /**
+     * A mapping of ServiceCommand::class => ServiceEvent::class
+     * @var array $commandHandlerMapping
+     */
     private $commandHandlerMapping;
 
     public function __construct($commandHandlerMapping)
