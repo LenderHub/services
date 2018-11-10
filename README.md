@@ -93,5 +93,5 @@ The `LHP\Services\Contracts\ServiceCommandHandler` contract can be implemented t
 The `ServiceCommandHandler` should receive an array whose keys are `ServiceCommmand` classes and whose values are the
 class name of the command handler that will execute the command.
 
-
+![Commands and Events Flow](https://raw.githubusercontent.com/LenderHub/services/ced3827959e577afd840cca653adc843c079e9a7/commands-and-events.png)
 
