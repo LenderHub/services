@@ -24,7 +24,7 @@ class StandardAccountCreated implements ServiceEvent
     /**
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'serviceUserId' => $this->serviceUserId,
