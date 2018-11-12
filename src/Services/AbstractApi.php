@@ -3,8 +3,10 @@
 namespace LHP\Services;
 
 use GuzzleHttp\Client;
+use LHP\Services\Commands\ServiceCommand;
+use LHP\Services\Contracts\SendsCommands;
 
-class AbstractApi
+class AbstractApi implements SendsCommands
 {
     /**
      * @var \GuzzleHttp\Client
@@ -63,6 +65,17 @@ class AbstractApi
     public function put(string $endpoint, $payload = [])
     {
         return $this->call('PUT', $endpoint, [], $payload);
+    }
+
+
+    /**
+     * @param \LHP\Services\Commands\ServiceCommand $command
+     *
+     * @return mixed
+     */
+    public function sendCommand(ServiceCommand $command)
+    {
+        
     }
 
     /**

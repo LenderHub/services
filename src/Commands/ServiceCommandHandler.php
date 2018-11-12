@@ -2,19 +2,35 @@
 
 namespace LHP\Services\Commands;
 
-class ServiceCommandHandler implements \LHP\Services\Contracts\ServiceCommandHandler
+use LHP\Services\Commands\Contracts\ServiceCommandHandler as ServiceCommandHandlerInterface;
+use LHP\Services\Exceptions\InvalidHandlerEventException;
+use LHP\Services\Exceptions\MissingHandlerException;
+
+class ServiceCommandHandler implements ServiceCommandHandlerInterface
 {
     /**
      * A mapping of ServiceCommand::class => ServiceEvent::class
+     *
      * @var array $commandHandlerMapping
      */
     private $commandHandlerMapping;
 
+    /**
+     * ServiceCommandHandler constructor.
+     *
+     * @param $commandHandlerMapping
+     */
     public function __construct($commandHandlerMapping)
     {
         $this->commandHandlerMapping = $commandHandlerMapping;
     }
 
+    /**
+     * @param $serializedCommand
+     *
+     * @return mixed
+     * @throws \Exception
+     */
     public function handle($serializedCommand)
     {
         $command = $serializedCommand['command'];
@@ -22,7 +38,7 @@ class ServiceCommandHandler implements \LHP\Services\Contracts\ServiceCommandHan
         $payload = $serializedCommand['payload'];
 
         if (! isset($this->commandHandlerMapping[$command])) {
-            throw new \Exception("Handler for {$command} not found");
+            throw new MissingHandlerException("Handler for {$command} not found");
         }
         $handlerClass = $this->commandHandlerMapping[$command];
 
@@ -32,8 +48,7 @@ class ServiceCommandHandler implements \LHP\Services\Contracts\ServiceCommandHan
         $handler = new $handlerClass;
 
         if ($handler::$emits !== $expects) {
-            // TODO: Make custom exception
-            throw new \Exception('Invalid event returned from handler');
+            throw new InvalidHandlerEventException('Invalid event returned from handler');
         }
 
         return $handler->executeCommand($payload);

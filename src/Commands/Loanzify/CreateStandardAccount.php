@@ -2,7 +2,7 @@
 
 namespace LHP\Services\Commands\Loanzify;
 
-use LHP\Services\Commands\Contracts\ServiceCommand;
+use LHP\Services\Commands\ServiceCommand;
 use LHP\Services\Events\Loanzify\StandardAccountCreated;
 
 class CreateStandardAccount extends ServiceCommand

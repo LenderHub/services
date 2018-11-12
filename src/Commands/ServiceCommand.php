@@ -1,8 +1,10 @@
 <?php
 
-namespace LHP\Services\Commands\Contracts;
+namespace LHP\Services\Commands;
 
-abstract class ServiceCommand
+use Illuminate\Contracts\Support\Arrayable;
+
+abstract class ServiceCommand implements Arrayable
 {
     /**
      * The event class the command expects to receive on successful execution

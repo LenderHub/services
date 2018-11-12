@@ -9,5 +9,10 @@ abstract class ExecutesCommand
      */
     static $emits;
 
+    /**
+     * @param $payload
+     *
+     * @return mixed
+     */
     abstract public function executeCommand($payload);
 }
