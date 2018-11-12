@@ -23,7 +23,8 @@ return [
 
     'commands' => [
         'handlers' => [
-            // \App\CommandHandlers\CreateStandardAccount::class => \LHP\Services\Commands\Loanzify\CreateStandardAccount::class,
+            // ServiceCommand::class => LocalHandler::class
+            // \LHP\Services\Commands\Loanzify\CreateStandardAccount::class => \App\CommandHandlers\CreateStandardAccount::class,
         ],
     ],
 ];
