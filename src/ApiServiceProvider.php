@@ -21,6 +21,8 @@ class ApiServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/config/lhp-services.php' => config_path('lhp-services.php'),
         ]);
+
+        $this->loadRoutesFrom(__DIR__.'/routes/api.php');
     }
 
     /**

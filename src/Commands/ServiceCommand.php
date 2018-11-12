@@ -8,12 +8,14 @@ abstract class ServiceCommand implements Arrayable
 {
     /**
      * The event class the command expects to receive on successful execution
+     *
      * @return string
      */
     abstract public function expects(): string;
 
     /**
      * The payload of the command
+     *
      * @return array
      */
     abstract public function payload(): array;

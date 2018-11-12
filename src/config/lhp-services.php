@@ -20,4 +20,10 @@ return [
         'base_uri' => env('API_SMARTAPP_BASE_URI'),
         'secret'   => env('SECRET_KEY'),
     ],
+
+    'commands' => [
+        'handlers' => [
+            // \App\CommandHandlers\CreateStandardAccount::class => \LHP\Services\Commands\Loanzify\CreateStandardAccount::class,
+        ],
+    ],
 ];

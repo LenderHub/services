@@ -40,6 +40,7 @@ class ServiceCommandHandler implements ServiceCommandHandlerInterface
         if (! isset($this->commandHandlerMapping[$command])) {
             throw new MissingHandlerException("Handler for {$command} not found");
         }
+
         $handlerClass = $this->commandHandlerMapping[$command];
 
         /**
