@@ -7,19 +7,16 @@ use LHP\Services\Events\Loanzify\StandardAccountCreated;
 
 class CreateStandardAccount extends ServiceCommand
 {
-    /**
-     * @var string
-     */
-    private $ssoEmail;
+    private $ssoId;
 
     /**
      * CreateStandardAccount constructor.
      *
-     * @param string $ssoEmail
+     * @param int $ssoId
      */
-    public function __construct(string $ssoEmail)
+    public function __construct(int $ssoId)
     {
-        $this->ssoEmail = $ssoEmail;
+        $this->ssoId = $ssoId;
     }
 
     /**
@@ -40,6 +37,6 @@ class CreateStandardAccount extends ServiceCommand
     public function payload(): array
     {
         return [
-            'ssoEmail' => $this->ssoEmail,
+            'ssoId' => $this->ssoId,
         ];
 }}
