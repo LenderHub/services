@@ -189,6 +189,9 @@ class ApiServiceProvider extends ServiceProvider
     {
         return [
             SSO::class,
+            LHP::class,
+            Loanzify::class,
+            SmartApp::class,
         ];
     }
 }
