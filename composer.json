@@ -13,5 +13,12 @@
         "psr-4": {
             "LHP\\Services\\": "src"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LHP\\Services\\ApiServiceProvider"
+            ]
+        }
     }
 }
