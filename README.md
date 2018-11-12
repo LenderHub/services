@@ -1,5 +1,11 @@
 # Services
 
+## Setup
+
+When the package is installed it should auto-register the `LHP\Services\ApiServiceProvider` provider.
+
+Run `php artisan vendor:publish --provider="LHP\Services\ApiServiceProvider` to publish the config files.
+
 ## Commands & Events
 
 This package includes a system for creating and running arbitrary RPCs from SSO to services using the concepts of Commands
@@ -68,6 +74,8 @@ Command handlers are created in the service, preferably in the `App\CommandHandl
 the `LHP\Services\Contracts\ExecutesCommand` abstract class and define the event it emits as a static property and a method
 `executeCommand` that receives the payload of the command.
 
+Command handlers should be registered in `config/lhp-services.php` in order to automatically be handled by the package.
+
 ### Sending Commands from SSO
 
 The `LHP\Services\Contracts\SendsCommands` interface needs to be implemented on whichever `ServiceApi` child class needs to send commands.
@@ -76,22 +84,10 @@ There is an example on the `App\Services\Loanzify` class.
 
 ### Receiving Commands on the Service
 
-Each service needs to implement an endpoint to receive commands, preferably named `commands`. For instance:
-
-`http://lhp-smartapp.test/api/v1/sso/commands`
+The package automatically registers a route at `/api/v1/sso/commands` to handle commands
 
 It will receive a `POST` request and return a `201` status code as well as the event payload as a success response.
 
-The controller will pass the command to the command handler, then return the success or error response.
-
-### Executing Commands on the Service
-
-The class `LHP\Services\Commands\ServiceCommandHandler` is provided to use as a handler.
-
-The `LHP\Services\Contracts\ServiceCommandHandler` contract can be implemented to create a custom handler, but this should not be necessary.
-
-The `ServiceCommandHandler` should receive an array whose keys are `ServiceCommmand` classes and whose values are the
-class name of the command handler that will execute the command.
 
 ![Commands and Events Flow](https://raw.githubusercontent.com/LenderHub/services/ced3827959e577afd840cca653adc843c079e9a7/commands-and-events.png)
 
