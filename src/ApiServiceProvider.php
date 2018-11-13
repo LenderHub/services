@@ -115,7 +115,7 @@ class ApiServiceProvider extends ServiceProvider
      */
     public function registerLoanzifyV3()
     {
-        $this->app->singleton(Loanzify::class, function ($app) {
+        $this->app->singleton(LoanzifyV3::class, function ($app) {
             $token = JWT::encode(
                 [
                     'iat'   => time(),
@@ -228,6 +228,7 @@ class ApiServiceProvider extends ServiceProvider
             LHP::class,
             Loanzify::class,
             SmartApp::class,
+            LoanzifyV3::class,
         ];
     }
 }
