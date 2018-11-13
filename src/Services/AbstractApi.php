@@ -3,6 +3,8 @@
 namespace LHP\Services;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
+use Illuminate\Support\Facades\Log;
 use LHP\Services\Commands\ServiceCommand;
 use LHP\Services\Contracts\SendsCommands;
 
@@ -25,9 +27,10 @@ class AbstractApi implements SendsCommands
 
     /**
      * @param string $endpoint
-     * @param array $params
+     * @param array  $params
      *
      * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function get(string $endpoint, $params = [])
     {
@@ -39,6 +42,7 @@ class AbstractApi implements SendsCommands
      * @param array  $payload
      *
      * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function post(string $endpoint, $payload = [])
     {
@@ -50,6 +54,7 @@ class AbstractApi implements SendsCommands
      * @param array  $payload
      *
      * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function delete(string $endpoint, $payload = [])
     {
@@ -61,17 +66,19 @@ class AbstractApi implements SendsCommands
      * @param array  $payload
      *
      * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function put(string $endpoint, $payload = [])
     {
         return $this->call('PUT', $endpoint, [], $payload);
     }
 
-
     /**
      * @param \LHP\Services\Commands\ServiceCommand $command
      *
      * @return mixed
+     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function sendCommand(ServiceCommand $command)
     {
@@ -81,28 +88,31 @@ class AbstractApi implements SendsCommands
     /**
      * @param string $method
      * @param string $endpoint
-     * @param array $params
+     * @param array  $params
+     * @param array  $payload
      *
      * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    private function call(string $method = 'GET', string $endpoint, $params = [], $payload = [])
+    private function call(string $method, string $endpoint, $params = [], $payload = [])
     {
-        $includePayload = ! empty($payload) ? ['form_params' => $payload] : [];
-
-        return json_decode(
-            $this->client->request(
+        try {
+            $response = $this->client->request(
                 $method,
                 $endpoint,
                 [
-                    'query'         => $params,
-                    'form_params'   => $payload,
+                    'query'   => $params,
+                    'json'    => $payload,
                     'headers' => [
-                        'Accept'              => 'application/json',
-                        'Content-Type'        => 'application/json',
+                        'Accept'       => 'application/json',
+                        'Content-Type' => 'application/json',
                     ],
-                ] + $includePayload
-            )
-                ->getBody()
-        );
+                ]
+            );
+            return json_decode($response->getBody(), true);
+        } catch (RequestException $e) {
+            Log::error(get_class($this) . 'error: ' . $e->getMessage());
+            throw $e;
+        }
     }
 }
