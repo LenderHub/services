@@ -28,7 +28,7 @@ abstract class ServiceCommand implements Arrayable
     public function toArray()
     {
         return [
-            'command' => self::class,
+            'command' => get_class($this),
             'expects' => $this->expects(),
             'payload' => $this->payload(),
         ];
