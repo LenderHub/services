@@ -36,6 +36,7 @@ class ApiServiceProvider extends ServiceProvider
         $this->registerLHP();
         $this->registerLoanzify();
         $this->registerSmartApp();
+        $this->registerLoanzifyV3();
     }
 
     /**
@@ -101,7 +102,7 @@ class ApiServiceProvider extends ServiceProvider
                     ->withHeader('Authorization', "Bearer $token");
             }), 'add_loanzify_headers');
 
-            return new SSO(
+            return new Loanzify(
                 new Client([
                     'base_uri' => config('lhp-services.loanzify.base_uri'),
                     'handler'  => $stack,
@@ -137,7 +138,7 @@ class ApiServiceProvider extends ServiceProvider
                     ->withHeader('Authorization', "Bearer $token");
             }), 'add_loanzify_headers');
 
-            return new SSO(
+            return new LoanzifyV3(
                 new Client([
                     'base_uri' => config('lhp-services.loanzifyV3.base_uri'),
                     'handler'  => $stack,
@@ -173,7 +174,7 @@ class ApiServiceProvider extends ServiceProvider
                     ->withHeader('Authorization', "Bearer $token");
             }), 'add_lhp_headers');
 
-            return new SSO(
+            return new LHP(
                 new Client([
                     'base_uri' => config('lhp-services.lhp.base_uri'),
                     'handler'  => $stack,
@@ -209,7 +210,7 @@ class ApiServiceProvider extends ServiceProvider
                     ->withHeader('Authorization', "Bearer $token");
             }), 'add_smartapp_headers');
 
-            return new SSO(
+            return new SmartApp(
                 new Client([
                     'base_uri' => config('lhp-services.smartapp.base_uri'),
                     'handler'  => $stack,
