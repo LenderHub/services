@@ -75,7 +75,7 @@ class AbstractApi implements SendsCommands
      */
     public function sendCommand(ServiceCommand $command)
     {
-        return $this->post('/sso/commands', $command->toArray());
+        return $this->post('commands', $command->toArray());
     }
 
     /**
