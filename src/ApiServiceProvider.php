@@ -113,6 +113,42 @@ class ApiServiceProvider extends ServiceProvider
     /**
      * @return void
      */
+    public function registerLoanzifyV3()
+    {
+        $this->app->singleton(Loanzify::class, function ($app) {
+            $token = JWT::encode(
+                [
+                    'iat'   => time(),
+                    'exp'   => time() + 300,
+                ],
+                //env('SECRET_KEY'),
+                config('lhp-services.loanzifyV3.secret'),
+                'HS256'
+            );
+
+            $stack = HandlerStack::create();
+
+            $stack->unshift(Middleware::mapRequest(function (RequestInterface $r) use ($token) {
+                $uri = $r->getUri();
+
+                return $r
+                    ->withUri($uri->withQuery($uri->getQuery()))
+                    ->withHeader('Content-Type', 'application/json')
+                    ->withHeader('Authorization', "Bearer $token");
+            }), 'add_loanzify_headers');
+
+            return new SSO(
+                new Client([
+                    'base_uri' => config('lhp-services.loanzifyV3.base_uri'),
+                    'handler'  => $stack,
+                ])
+            );
+        });
+    }
+
+    /**
+     * @return void
+     */
     public function registerLHP()
     {
         $this->app->singleton(LHP::class, function ($app) {

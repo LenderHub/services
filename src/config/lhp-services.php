@@ -11,6 +11,11 @@ return [
         'secret'   => env('SECRET_KEY'),
     ],
 
+    'loanzifyV3' => [
+        'base_uri' => env('API_LOANZIFY_V3_BASE_URI'),
+        'secret'   => env('SECRET_KEY'),
+    ],
+
     'lhp' => [
         'base_uri' => env('API_LHP_BASE_URI'),
         'secret'   => env('SECRET_KEY'),
