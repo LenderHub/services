@@ -4,12 +4,9 @@ namespace LHP\Services\Http\Middleware;
 
 use Closure;
 use Exception;
-use Firebase\JWT\BeforeValidException;
-use Firebase\JWT\ExpiredException;
 use Firebase\JWT\JWT;
 use LHP\Services\Exceptions\Http\InvalidInternalJWTToken;
 use LHP\Services\Exceptions\Http\MissingInternalJWTToken;
-use UnexpectedValueException;
 
 class CheckInternalJWT
 {
@@ -38,7 +35,7 @@ class CheckInternalJWT
         try {
             JWT::$leeway = 480;
 
-            JWT::decode($key, config('lhp-services.sso.secret'), ['HS256']);
+            JWT::decode($key, config('lhp-services.service_secret'), ['HS256']);
 
             return $next($request);
         } catch (Exception $e) {
