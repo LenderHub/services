@@ -2,21 +2,24 @@
 
 namespace LHP\Services\Commands\Loanzify;
 
-use LHP\Services\Commands\ServiceCommand;
-use LHP\Services\Events\Loanzify\StandardAccountCreated;
+use LHP\Services\Events\Loanzify\AccountDeleted;
 
-class CreateStandardAccount extends ServiceCommand
+class DeleteAccount
 {
-    private $ssoId;
+    /**
+     * @var int
+     */
+    private $serviceUserId;
 
     /**
      * CreateStandardAccount constructor.
      *
-     * @param int $ssoId
+     * @param int $serviceUserId
      */
-    public function __construct(int $ssoId)
+    public function __construct(int $serviceUserId)
     {
-        $this->ssoId = $ssoId;
+
+        $this->serviceUserId = $serviceUserId;
     }
 
     /**
@@ -26,7 +29,7 @@ class CreateStandardAccount extends ServiceCommand
      */
     public function expects(): string
     {
-        return StandardAccountCreated::class;
+        return AccountDeleted::class;
     }
 
     /**
@@ -37,7 +40,7 @@ class CreateStandardAccount extends ServiceCommand
     public function payload(): array
     {
         return [
-            'ssoId' => $this->ssoId,
+            'serviceUserId' => $this->serviceUserId,
         ];
     }
 }
