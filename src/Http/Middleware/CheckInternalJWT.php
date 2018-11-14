@@ -25,17 +25,14 @@ class CheckInternalJWT
         // check Authorization header for key
         $authHeader = $request->header('Authorization');
 
-        if (empty($authHeader) || strtolower(substr($authHeader, 0, 7)) != 'bearer ') {
+        if (1 !== preg_match('/^Bearer\s(.*)/i', $authHeader, $authToken)) {
             throw new MissingInternalJWTToken('Missing API key');
         }
-
-        $key   = substr($authHeader, 7);
-        $error = null;
 
         try {
             JWT::$leeway = 480;
 
-            JWT::decode($key, config('lhp-services.service_secret'), ['HS256']);
+            JWT::decode($authToken[1], config('lhp-services.service_secret'), ['HS256']);
 
             return $next($request);
         } catch (Exception $e) {
