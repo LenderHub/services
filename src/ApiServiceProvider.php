@@ -16,13 +16,15 @@ class ApiServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(\Illuminate\Routing\Router $router)
     {
         $this->publishes([
             __DIR__.'/config/lhp-services.php' => config_path('lhp-services.php'),
         ]);
 
         $this->loadRoutesFrom(__DIR__.'/routes/api.php');
+
+        $router->aliasMiddleware('lhp.services.internal-jwt', \LHP\Services\Http\Middleware\CheckInternalJWT::class);
     }
 
     /**

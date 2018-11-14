@@ -1,6 +1,9 @@
 <?php
 
 return [
+    // Set this value to whatever "secret" is for the service this package is installed on.
+    'service_secret' => env('SECRET_KEY'),
+
     'sso' => [
         'base_uri' => env('API_SSO_BASE_URI'),
         'secret'   => env('SECRET_KEY'),
