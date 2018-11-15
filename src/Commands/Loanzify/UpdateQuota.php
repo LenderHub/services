@@ -2,9 +2,10 @@
 
 namespace LHP\Services\Commands\Loanzify;
 
+use LHP\Services\Commands\ServiceCommand;
 use LHP\Services\Events\Loanzify\QuotaUpdated;
 
-class UpdateQuota
+class UpdateQuota extends ServiceCommand
 {
     /**
      * @var int

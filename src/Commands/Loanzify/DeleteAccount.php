@@ -2,9 +2,10 @@
 
 namespace LHP\Services\Commands\Loanzify;
 
+use LHP\Services\Commands\ServiceCommand;
 use LHP\Services\Events\Loanzify\AccountDeleted;
 
-class DeleteAccount
+class DeleteAccount extends ServiceCommand
 {
     /**
      * @var int

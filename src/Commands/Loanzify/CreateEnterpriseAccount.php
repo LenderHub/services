@@ -2,9 +2,10 @@
 
 namespace LHP\Services\Commands\Loanzify;
 
+use LHP\Services\Commands\ServiceCommand;
 use LHP\Services\Events\Loanzify\EnterpriseAccountCreated;
 
-class CreateEnterpriseAccount
+class CreateEnterpriseAccount extends ServiceCommand
 {
     /**
      * @var int
