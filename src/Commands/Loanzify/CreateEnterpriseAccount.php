@@ -17,22 +17,15 @@ class CreateEnterpriseAccount
     private $maxLoanOfficers;
 
     /**
-     * @var int
-     */
-    private $maxBranches;
-
-    /**
      * CreateStandardAccount constructor.
      *
      * @param int $ssoId
      * @param int $maxLoanOfficers
-     * @param int $maxBranches
      */
-    public function __construct(int $ssoId, int $maxLoanOfficers, int $maxBranches)
+    public function __construct(int $ssoId, int $maxLoanOfficers)
     {
         $this->ssoId           = $ssoId;
         $this->maxLoanOfficers = $maxLoanOfficers;
-        $this->maxBranches     = $maxBranches;
     }
 
     /**
@@ -55,7 +48,6 @@ class CreateEnterpriseAccount
         return [
             'ssoId'           => $this->ssoId,
             'maxLoanOfficers' => $this->maxLoanOfficers,
-            'maxBranches'     => $this->maxBranches,
         ];
     }
 }
