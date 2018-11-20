@@ -2,30 +2,16 @@
 
 namespace LHP\Services\Events\LHP;
 
-class QuotaUpdated
-{
-    /**
-     * @var
-     */
-    private $serviceUserId;
+use LHP\Services\Events\Contracts\ServiceEvent;
 
-    /**
-     * StandardAccountCreated constructor.
-     *
-     * @param $serviceUserId
-     */
-    public function __construct($serviceUserId)
-    {
-        $this->serviceUserId = $serviceUserId;
-    }
+class QuotaUpdated implements ServiceEvent
+{
 
     /**
      * @return array
      */
     public function toArray(): array
     {
-        return [
-            'serviceUserId' => $this->serviceUserId,
-        ];
+        return [];
     }
 }
