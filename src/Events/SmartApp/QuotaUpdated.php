@@ -1,10 +1,10 @@
 <?php
 
-namespace LHP\Services\Events\Loanzify;
+namespace LHP\Services\Events\SmartApp;
 
 use LHP\Services\Events\Contracts\ServiceEvent;
 
-class EnterpriseAccountCreated implements ServiceEvent
+class QuotaUpdated implements ServiceEvent
 {
     /**
      * @var

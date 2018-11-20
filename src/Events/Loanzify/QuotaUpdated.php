@@ -2,7 +2,9 @@
 
 namespace LHP\Services\Events\Loanzify;
 
-class QuotaUpdated
+use LHP\Services\Events\Contracts\ServiceEvent;
+
+class QuotaUpdated implements ServiceEvent
 {
     /**
      * @var

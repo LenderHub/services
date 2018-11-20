@@ -2,7 +2,9 @@
 
 namespace LHP\Services\Events\Loanzify;
 
-class AccountDeleted
+use LHP\Services\Events\Contracts\ServiceEvent;
+
+class AccountDeleted implements ServiceEvent
 {
     /**
      * @var
