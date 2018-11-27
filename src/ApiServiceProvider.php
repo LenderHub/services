@@ -23,6 +23,7 @@ class ApiServiceProvider extends ServiceProvider
         ]);
 
         $this->loadRoutesFrom(__DIR__.'/routes/api.php');
+        $this->loadRoutesFrom(__DIR__.'/routes/web.php');
 
         $router->aliasMiddleware('lhp.services.internal-jwt', \LHP\Services\Http\Middleware\CheckInternalJWT::class);
     }
