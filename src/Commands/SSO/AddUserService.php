@@ -20,20 +20,27 @@ class AddUserService extends ServiceCommand
     /**
      * @var int
      */
-    private $type;
+    private $serviceType;
 
     /**
+     * @var int|null
+     */
+    private $serviceUserId;
+
+    /***
      * AddUserService constructor.
      *
-     * @param string $email
-     * @param int    $serviceId
-     * @param int    $type
+     * @param string   $email
+     * @param int      $serviceId
+     * @param int      $serviceType
+     * @param int|null $serviceUserId
      */
-    public function __construct(string $email, int $serviceId, int $type)
+    public function __construct(string $email, int $serviceId, int $serviceType, ?int $serviceUserId = null)
     {
         $this->email         = $email;
         $this->serviceTypeId = $serviceId;
-        $this->type          = $type;
+        $this->serviceType   = $serviceType;
+        $this->serviceUserId = $serviceUserId;
     }
 
     /**
@@ -54,8 +61,10 @@ class AddUserService extends ServiceCommand
     public function payload(): array
     {
         return [
-            'email'     => $this->email,
-            'serviceId' => $this->serviceId,
+            'email'                => $this->email,
+            'service_id'           => $this->serviceId,
+            'service_user_type_id' => $this->serviceType,
+            'service_user_id'      => $this->serviceUserId,
         ];
     }
 }
