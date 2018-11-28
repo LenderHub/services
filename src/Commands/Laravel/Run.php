@@ -21,7 +21,7 @@ class Run extends Command
      *
      * @var string
      */
-    protected $signature = 'lhp-services:run {service} {cmd} {--arg=*}';
+    protected $signature = 'lhp-services:run {service} {cmd} {args*}';
 
     /**
      * The console command description.
@@ -47,7 +47,7 @@ class Run extends Command
     {
         $service = $this->argument('service');
         $command = $this->argument('cmd');
-        $args    = $this->argument('arg');
+        $args    = $this->argument('args');
 
         $class = "\\LHP\\Services\\Commands\\$service\\$command";
 
