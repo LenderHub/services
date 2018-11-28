@@ -3,6 +3,7 @@
 namespace LHP\Services;
 
 use Illuminate\Support\ServiceProvider;
+use LHP\Services\Commands\Laravel\Run;
 
 class ApiServiceProvider extends ServiceProvider
 {
@@ -25,7 +26,7 @@ class ApiServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             // Laravel commands are located in src/Commands/Laravel
             $this->commands([
-                //FooCommand::class,
+                Run::class,
             ]);
         }
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace LHP\Services\Commands\Laravel\SSO;
+namespace LHP\Services\Commands\Laravel;
 
 use Illuminate\Console\Command;
 use LHP\Services\Commands\ServiceCommandHandler;
@@ -51,6 +51,9 @@ class Run extends Command
 
         $class = "\\LHP\\Services\\Commands\\$service\\$command";
 
+        $this->line("Running command $class with args:");
+        print_r($args);
+
         if (! class_exists($class)) {
             throw new MissingCommandException($class);
         }
@@ -66,7 +69,7 @@ class Run extends Command
         print_r($event->toArray());
 
         $this->line('Complete!');
-        
+
         return;
     }
 }
