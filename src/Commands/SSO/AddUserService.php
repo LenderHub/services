@@ -18,15 +18,22 @@ class AddUserService extends ServiceCommand
     private $serviceId;
 
     /**
+     * @var int
+     */
+    private $type;
+
+    /**
      * AddUserService constructor.
      *
      * @param string $email
      * @param int    $serviceId
+     * @param int    $type
      */
-    public function __construct(string $email, int $serviceId)
+    public function __construct(string $email, int $serviceId, int $type)
     {
-        $this->email     = $email;
-        $this->serviceId = $serviceId;
+        $this->email         = $email;
+        $this->serviceTypeId = $serviceId;
+        $this->type          = $type;
     }
 
     /**

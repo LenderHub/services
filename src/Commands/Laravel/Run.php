@@ -5,7 +5,7 @@ namespace LHP\Services\Commands\Laravel;
 use Illuminate\Console\Command;
 use LHP\Services\Commands\ServiceCommandHandler;
 use LHP\Services\Commands\SSO\CreateUser;
-use LHP\Services\Exceptions\MissingCommandException;
+use LHP\Services\Exceptions\Commands\MissingCommandException;
 
 class Run extends Command
 {
