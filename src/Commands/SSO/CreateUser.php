@@ -5,7 +5,7 @@ namespace LHP\Services\Commands\SSO;
 use LHP\Services\Commands\ServiceCommand;
 use LHP\Services\Events\SSO\UserCreated;
 
-class CreateAdminUser extends ServiceCommand
+class CreateUser extends ServiceCommand
 {
     /**
      * @var string
@@ -18,15 +18,22 @@ class CreateAdminUser extends ServiceCommand
     private $password;
 
     /**
+     * @var array
+     */
+    private $data;
+
+    /**
      * CreateAdminUser constructor.
      *
      * @param string      $email
      * @param null|string $password
+     * @param array       ...$data
      */
-    public function __construct(string $email, ?string $password = null)
+    public function __construct(string $email, ?string $password = null, ...$data)
     {
         $this->email    = $email;
         $this->password = $password;
+        $this->data     = $data;
     }
 
     /**
@@ -49,6 +56,6 @@ class CreateAdminUser extends ServiceCommand
         return [
             'email'    => $this->email,
             'password' => $this->password,
-        ];
+        ] + $this->data;
     }
 }

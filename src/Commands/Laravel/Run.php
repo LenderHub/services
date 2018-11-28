@@ -4,7 +4,7 @@ namespace LHP\Services\Commands\Laravel;
 
 use Illuminate\Console\Command;
 use LHP\Services\Commands\ServiceCommandHandler;
-use LHP\Services\Commands\SSO\CreateAdminUser;
+use LHP\Services\Commands\SSO\CreateUser;
 use LHP\Services\Exceptions\MissingCommandException;
 
 class Run extends Command
@@ -13,7 +13,7 @@ class Run extends Command
      * @var array
      */
     protected $commands = [
-        CreateAdminUser::class,
+        CreateUser::class,
     ];
 
     /**
