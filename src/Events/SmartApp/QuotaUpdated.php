@@ -6,7 +6,6 @@ use LHP\Services\Events\Contracts\ServiceEvent;
 
 class QuotaUpdated implements ServiceEvent
 {
-
     /**
      * @return array
      */

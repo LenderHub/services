@@ -6,9 +6,10 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Log;
 use LHP\Services\Commands\ServiceCommand;
+use LHP\Services\Contracts\ApiInterface;
 use LHP\Services\Contracts\SendsCommands;
 
-class AbstractApi implements SendsCommands
+class AbstractApi implements SendsCommands, ApiInterface
 {
     /**
      * @var \GuzzleHttp\Client
@@ -16,11 +17,11 @@ class AbstractApi implements SendsCommands
     protected $client;
 
     /**
-     * SSO constructor.
+     * AbstractApi constructor.
      *
-     * @param \GuzzleHttp\Client $client
+     * @param \GuzzleHttp\Client|null $client
      */
-    public function __construct(Client $client)
+    public function __construct(?Client $client = null)
     {
         $this->client = $client;
     }

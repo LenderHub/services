@@ -2,12 +2,7 @@
 
 namespace LHP\Services;
 
-use Firebase\JWT\JWT;
-use GuzzleHttp\Client;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Middleware;
 use Illuminate\Support\ServiceProvider;
-use Psr\Http\Message\RequestInterface;
 
 class ApiServiceProvider extends ServiceProvider
 {
@@ -26,6 +21,13 @@ class ApiServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/routes/web.php');
 
         $router->aliasMiddleware('lhp.services.internal-jwt', \LHP\Services\Http\Middleware\CheckInternalJWT::class);
+
+        if ($this->app->runningInConsole()) {
+            // Laravel commands are located in src/Commands/Laravel
+            $this->commands([
+                //FooCommand::class,
+            ]);
+        }
     }
 
     /**
@@ -48,32 +50,10 @@ class ApiServiceProvider extends ServiceProvider
     public function registerSSO()
     {
         $this->app->singleton(SSO::class, function ($app) {
-            $token = JWT::encode(
-                [
-                    'iat'   => time(),
-                    'exp'   => time() + 300,
-                ],
-                //env('SECRET_KEY'),
-                config('lhp-services.sso.secret'),
-                'HS256'
-            );
-
-            $stack = HandlerStack::create();
-
-            $stack->unshift(Middleware::mapRequest(function (RequestInterface $r) use ($token) {
-                $uri = $r->getUri();
-
-                return $r
-                    ->withUri($uri->withQuery($uri->getQuery()))
-                    ->withHeader('Content-Type', 'application/json')
-                    ->withHeader('Authorization', "Bearer $token");
-            }), 'add_sso_headers');
-
-            return new SSO(
-                new Client([
-                    'base_uri' => config('lhp-services.sso.base_uri') . '/api/v1/private/',
-                    'handler'  => $stack,
-                ])
+            return Builder::service(
+                'sso',
+                config('lhp-services.sso.base_uri'),
+                config('lhp-services.sso.secret')
             );
         });
     }
@@ -84,32 +64,10 @@ class ApiServiceProvider extends ServiceProvider
     public function registerLoanzify()
     {
         $this->app->singleton(Loanzify::class, function ($app) {
-            $token = JWT::encode(
-                [
-                    'iat'   => time(),
-                    'exp'   => time() + 300,
-                ],
-                //env('SECRET_KEY'),
-                config('lhp-services.loanzify.secret'),
-                'HS256'
-            );
-
-            $stack = HandlerStack::create();
-
-            $stack->unshift(Middleware::mapRequest(function (RequestInterface $r) use ($token) {
-                $uri = $r->getUri();
-
-                return $r
-                    ->withUri($uri->withQuery($uri->getQuery()))
-                    ->withHeader('Content-Type', 'application/json')
-                    ->withHeader('Authorization', "Bearer $token");
-            }), 'add_loanzify_headers');
-
-            return new Loanzify(
-                new Client([
-                    'base_uri' => config('lhp-services.loanzify.base_uri'),
-                    'handler'  => $stack,
-                ])
+            return Builder::service(
+                'loanzify',
+                config('lhp-services.loanzify.base_uri'),
+                config('lhp-services.loanzify.secret')
             );
         });
     }
@@ -120,32 +78,10 @@ class ApiServiceProvider extends ServiceProvider
     public function registerLoanzifyV3()
     {
         $this->app->singleton(LoanzifyV3::class, function ($app) {
-            $token = JWT::encode(
-                [
-                    'iat'   => time(),
-                    'exp'   => time() + 300,
-                ],
-                //env('SECRET_KEY'),
-                config('lhp-services.loanzifyV3.secret'),
-                'HS256'
-            );
-
-            $stack = HandlerStack::create();
-
-            $stack->unshift(Middleware::mapRequest(function (RequestInterface $r) use ($token) {
-                $uri = $r->getUri();
-
-                return $r
-                    ->withUri($uri->withQuery($uri->getQuery()))
-                    ->withHeader('Content-Type', 'application/json')
-                    ->withHeader('Authorization', "Bearer $token");
-            }), 'add_loanzify_headers');
-
-            return new LoanzifyV3(
-                new Client([
-                    'base_uri' => config('lhp-services.loanzifyV3.base_uri'),
-                    'handler'  => $stack,
-                ])
+            return Builder::service(
+                'loanzifyV3',
+                config('lhp-services.loanzifyV3.base_uri'),
+                config('lhp-services.loanzifyV3.secret')
             );
         });
     }
@@ -156,32 +92,10 @@ class ApiServiceProvider extends ServiceProvider
     public function registerLHP()
     {
         $this->app->singleton(LHP::class, function ($app) {
-            $token = JWT::encode(
-                [
-                    'iat'   => time(),
-                    'exp'   => time() + 300,
-                ],
-                //env('SECRET_KEY'),
-                config('lhp-services.lhp.secret'),
-                'HS256'
-            );
-
-            $stack = HandlerStack::create();
-
-            $stack->unshift(Middleware::mapRequest(function (RequestInterface $r) use ($token) {
-                $uri = $r->getUri();
-
-                return $r
-                    ->withUri($uri->withQuery($uri->getQuery()))
-                    ->withHeader('Content-Type', 'application/json')
-                    ->withHeader('Authorization', "Bearer $token");
-            }), 'add_lhp_headers');
-
-            return new LHP(
-                new Client([
-                    'base_uri' => config('lhp-services.lhp.base_uri'),
-                    'handler'  => $stack,
-                ])
+            return Builder::service(
+                'lhp',
+                config('lhp-services.lhp.base_uri'),
+                config('lhp-services.lhp.secret')
             );
         });
     }
@@ -192,32 +106,10 @@ class ApiServiceProvider extends ServiceProvider
     public function registerSmartApp()
     {
         $this->app->singleton(SmartApp::class, function ($app) {
-            $token = JWT::encode(
-                [
-                    'iat'   => time(),
-                    'exp'   => time() + 300,
-                ],
-                //env('SECRET_KEY'),
-                config('lhp-services.smartapp.secret'),
-                'HS256'
-            );
-
-            $stack = HandlerStack::create();
-
-            $stack->unshift(Middleware::mapRequest(function (RequestInterface $r) use ($token) {
-                $uri = $r->getUri();
-
-                return $r
-                    ->withUri($uri->withQuery($uri->getQuery()))
-                    ->withHeader('Content-Type', 'application/json')
-                    ->withHeader('Authorization', "Bearer $token");
-            }), 'add_smartapp_headers');
-
-            return new SmartApp(
-                new Client([
-                    'base_uri' => config('lhp-services.smartapp.base_uri'),
-                    'handler'  => $stack,
-                ])
+            return Builder::service(
+                'smartapp',
+                config('lhp-services.smartapp.base_uri'),
+                config('lhp-services.smartapp.secret')
             );
         });
     }
