@@ -13,15 +13,19 @@ use Psr\Http\Message\RequestInterface;
 class Builder
 {
     /**
-     * @param string $name
-     * @param string $uri
-     * @param string $secret
+     * @param string      $name
+     * @param null|string $uri
+     * @param null|string $secret
      *
-     * @return \LHP\Services\Contracts\ApiInterface
+     * @return \LHP\Services\Contracts\ApiInterface|null
      * @throws \LHP\Services\Exceptions\InvalidServiceException
      */
-    public static function service(string $name, string $uri, string $secret): ApiInterface
+    public static function service(string $name, ?string $uri = null, ?string $secret = null): ?ApiInterface
     {
+        if (is_null($uri) || is_null($secret)) {
+            return null;
+        }
+
         switch ($name) {
             case 'lhp':
                 return self::buildService(LHP::class, $uri, $secret);
