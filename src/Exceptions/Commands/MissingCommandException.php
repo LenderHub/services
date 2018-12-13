@@ -2,7 +2,7 @@
 
 namespace LHP\Services\Exceptions\Commands;
 
-class InvalidHandlerEventException extends \Exception
+class MissingCommandException extends \Exception
 {
 
 }
