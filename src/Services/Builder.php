@@ -45,12 +45,13 @@ class Builder
     }
 
     /**
+     * @param string $class
      * @param string $uri
      * @param string $secret
      *
-     * @return \LHP\Services\LHP
+     * @return \LHP\Services\AbstractApi
      */
-    private static function buildService(string $class, string $uri, string $secret): LHP
+    private static function buildService(string $class, string $uri, string $secret): AbstractApi
     {
         $token = JWT::encode(
             [
