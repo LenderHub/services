@@ -50,7 +50,7 @@ class ApiServiceProvider extends ServiceProvider
      */
     public function registerSSO()
     {
-        $this->app->singleton(SSO::class, function ($app) {
+        $this->app->bind(SSO::class, function ($app) {
             return Builder::service(
                 'sso',
                 config('lhp-services.sso.base_uri'),
@@ -64,7 +64,7 @@ class ApiServiceProvider extends ServiceProvider
      */
     public function registerLoanzify()
     {
-        $this->app->singleton(Loanzify::class, function ($app) {
+        $this->app->bind(Loanzify::class, function ($app) {
             return Builder::service(
                 'loanzify',
                 config('lhp-services.loanzify.base_uri'),
@@ -78,7 +78,7 @@ class ApiServiceProvider extends ServiceProvider
      */
     public function registerLoanzifyV3()
     {
-        $this->app->singleton(LoanzifyV3::class, function ($app) {
+        $this->app->bind(LoanzifyV3::class, function ($app) {
             return Builder::service(
                 'loanzifyV3',
                 config('lhp-services.loanzifyV3.base_uri'),
@@ -92,7 +92,7 @@ class ApiServiceProvider extends ServiceProvider
      */
     public function registerLHP()
     {
-        $this->app->singleton(LHP::class, function ($app) {
+        $this->app->bind(LHP::class, function ($app) {
             return Builder::service(
                 'lhp',
                 config('lhp-services.lhp.base_uri'),
@@ -106,7 +106,7 @@ class ApiServiceProvider extends ServiceProvider
      */
     public function registerSmartApp()
     {
-        $this->app->singleton(SmartApp::class, function ($app) {
+        $this->app->bind(SmartApp::class, function ($app) {
             return Builder::service(
                 'smartapp',
                 config('lhp-services.smartapp.base_uri'),
