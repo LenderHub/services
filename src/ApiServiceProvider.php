@@ -53,7 +53,7 @@ class ApiServiceProvider extends ServiceProvider
         $this->app->bind(SSO::class, function ($app) {
             return Builder::service(
                 'sso',
-                config('lhp-services.sso.base_uri'),
+                config('lhp-services.sso.base_uri'). '/api/v1/private/',
                 config('lhp-services.sso.secret')
             );
         });
