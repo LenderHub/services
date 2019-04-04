@@ -29,6 +29,11 @@ return [
         'secret'   => env('SECRET_KEY'),
     ],
 
+    'pos' => [
+        'base_uri' => env('API_POS_BASE_URI'),
+        'secret'   => env('SECRET_KEY'),
+    ],
+    
     'commands' => [
         'handlers' => [
             // ServiceCommand::class => LocalHandler::class
