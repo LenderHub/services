@@ -1,6 +1,4 @@
-<?php
-
-namespace LHP\Services;
+<?php namespace LHP\Services;
 
 class POS extends AbstractApi
 {

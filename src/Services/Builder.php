@@ -42,6 +42,9 @@ class Builder
             case 'loanzifyV3':
                 return self::buildService(LoanzifyV3::class, $uri, $secret);
                 break;
+            case 'pos':
+                return self::buildService(POS::class, $uri, $secret);
+                break;    
             default:
                 throw new InvalidServiceException($name);
                 break;
