@@ -121,7 +121,7 @@ class ApiServiceProvider extends ServiceProvider
      */
     public function registerPOS()
     {
-        $this->app->bind(SmartApp::class, function ($app) {
+        $this->app->bind(POS::class, function ($app) {
             return Builder::service(
                 'pos',
                 config('lhp-services.pos.base_uri'),
