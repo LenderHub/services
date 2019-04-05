@@ -6,19 +6,13 @@ use LHP\Services\Events\Contracts\ServiceEvent;
 
 class AccountCreated implements ServiceEvent
 {
-    /**
-     * @var
-     */
+    private $accountId;
     private $serviceUserId;
     private $domain;
 
-    /**
-     * StandardAccountCreated constructor.
-     *
-     * @param $serviceUserId
-     */
-    public function __construct($serviceUserId, $domain)
+    public function __construct($accountId, $serviceUserId, $domain)
     {
+        $this->accountId = $accountId;
         $this->serviceUserId = $serviceUserId;
         $this->domain = $domain;
     }
@@ -29,6 +23,7 @@ class AccountCreated implements ServiceEvent
     public function toArray(): array
     {
         return [
+            'account_id' => $this->accountId,
             'serviceUserId' => $this->serviceUserId,
             'domain' => $this->domain
         ];

@@ -3,25 +3,21 @@
 namespace LHP\Services\Commands\POS;
 
 use LHP\Services\Commands\ServiceCommand;
-use LHP\Services\Events\POS\AccountCreated;
+use LHP\Services\Events\POS\AfterAccountCreated;
 
 class AfterCreateAccount extends ServiceCommand
 {
-    /**
-     * @var int
-     */
-    private $ssoId;
-    private $smartappSiteProfileId;
+    private $posAccountId;
+    private $posAccountUserId;
+    private $ssoUserServiceId;
+    private $ssoUserId;
 
-    /**
-     * CreateStandardAccount constructor.
-     *
-     * @param int $ssoId
-     */
-    public function __construct(int $ssoId, int $ssoUserServiceId)
+    public function __construct(int $posAccountId, int $posAccountUserId, int $ssoUserServiceId, int $ssoUserId)
     {
-        $this->ssoId = $ssoId;
+        $this->posAccountId = $posAccountId;
+        $this->posAccountUserId = $posAccountUserId;
         $this->ssoUserServiceId = $ssoUserServiceId;
+        $this->ssoUserId = $ssoUserId;
     }
 
     /**
@@ -42,8 +38,10 @@ class AfterCreateAccount extends ServiceCommand
     public function payload(): array
     {
         return [
-            'ssoId' => $this->ssoId,
+            'posAccountId' => $this->posAccountId,
+            'posAccountUserId' => $this->posAccountUserId,
             'ssoUserServiceId' => $this->ssoUserServiceId,
+            'ssoUserId' => $this->ssoUserId,
         ];
     }
 }

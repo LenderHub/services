@@ -6,21 +6,9 @@ use LHP\Services\Events\Contracts\ServiceEvent;
 
 class AfterAccountCreated implements ServiceEvent
 {
-    /**
-     * @var
-     */
-    private $serviceUserId;
-    private $domain;
-
-    /**
-     * StandardAccountCreated constructor.
-     *
-     * @param $serviceUserId
-     */
-    public function __construct($serviceUserId, $domain)
+    public function __construct()
     {
-        $this->serviceUserId = $serviceUserId;
-        $this->domain = $domain;
+        //
     }
 
     /**
@@ -28,9 +16,6 @@ class AfterAccountCreated implements ServiceEvent
      */
     public function toArray(): array
     {
-        return [
-            'serviceUserId' => $this->serviceUserId,
-            'domain' => $this->domain
-        ];
+        return [];
     }
 }
