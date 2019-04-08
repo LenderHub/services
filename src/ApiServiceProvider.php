@@ -43,6 +43,7 @@ class ApiServiceProvider extends ServiceProvider
         $this->registerLoanzify();
         $this->registerSmartApp();
         $this->registerLoanzifyV3();
+        $this->registerPOS();
     }
 
     /**
@@ -116,6 +117,20 @@ class ApiServiceProvider extends ServiceProvider
     }
 
     /**
+     * @return void
+     */
+    public function registerPOS()
+    {
+        $this->app->bind(POS::class, function ($app) {
+            return Builder::service(
+                'pos',
+                config('lhp-services.pos.base_uri'),
+                config('lhp-services.pos.secret')
+            );
+        });
+    }
+
+    /**
      * @return array
      */
     public function provides()
@@ -126,6 +141,7 @@ class ApiServiceProvider extends ServiceProvider
             Loanzify::class,
             SmartApp::class,
             LoanzifyV3::class,
+            POS::class,
         ];
     }
 }
