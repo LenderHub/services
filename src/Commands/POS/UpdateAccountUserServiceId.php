@@ -3,9 +3,9 @@
 namespace LHP\Services\Commands\POS;
 
 use LHP\Services\Commands\ServiceCommand;
-use LHP\Services\Events\POS\AfterAccountCreated;
+use LHP\Services\Events\POS\AccountUserServiceIdUpdated;
 
-class AfterCreateAccount extends ServiceCommand
+class UpdateAccountUserServiceId extends ServiceCommand
 {
     private $posAccountId;
     private $posAccountUserId;
@@ -27,7 +27,7 @@ class AfterCreateAccount extends ServiceCommand
      */
     public function expects(): string
     {
-        return AfterAccountCreated::class;
+        return AccountUserServiceIdUpdated::class;
     }
 
     /**

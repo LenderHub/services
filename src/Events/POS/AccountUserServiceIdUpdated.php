@@ -4,7 +4,7 @@ namespace LHP\Services\Events\POS;
 
 use LHP\Services\Events\Contracts\ServiceEvent;
 
-class AfterAccountCreated implements ServiceEvent
+class AccountUserServiceIdUpdated implements ServiceEvent
 {
     public function __construct()
     {
