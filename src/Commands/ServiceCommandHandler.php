@@ -3,8 +3,9 @@
 namespace LHP\Services\Commands;
 
 use LHP\Services\Commands\Contracts\ServiceCommandHandler as ServiceCommandHandlerInterface;
-use LHP\Services\Exceptions\InvalidHandlerEventException;
-use LHP\Services\Exceptions\MissingHandlerException;
+use LHP\Services\Exceptions\Commands\InvalidHandlerEventException;
+use LHP\Services\Exceptions\Commands\MissingHandlerException;
+
 
 class ServiceCommandHandler implements ServiceCommandHandlerInterface
 {
