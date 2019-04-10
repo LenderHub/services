@@ -3,9 +3,9 @@
 namespace LHP\Services\Commands\POS;
 
 use LHP\Services\Commands\ServiceCommand;
-use LHP\Services\Events\POS\UserCreated;
+use LHP\Services\Events\POS\LoanOfficerCreated;
 
-class CreateUser extends ServiceCommand
+class CreateLoanOfficer extends ServiceCommand
 {
     private $ssoUserId;
     private $ssoParentUserId;
@@ -18,7 +18,7 @@ class CreateUser extends ServiceCommand
 
     public function expects(): string
     {
-        return UserCreated::class;
+        return LoanOfficerCreated::class;
     }
 
     public function payload(): array
