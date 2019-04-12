@@ -9,11 +9,13 @@ class CreateLoanOfficer extends ServiceCommand
 {
     private $ssoUserId;
     private $ssoParentUserId;
+    private $ssoBranchId;
     
-    public function __construct(int $ssoUserId, int $ssoParentUserId)
+    public function __construct(int $ssoUserId, int $ssoParentUserId, ?int $ssoBranchId)
     {
         $this->ssoUserId = $ssoUserId;
         $this->ssoParentUserId = $ssoParentUserId;
+        $this->ssoBranchId = $ssoBranchId;
     }
 
     public function expects(): string
@@ -26,6 +28,7 @@ class CreateLoanOfficer extends ServiceCommand
         return [
             'ssoUserId' => $this->ssoUserId,
             'ssoParentUserId' => $this->ssoParentUserId,
+            'ssoBranchId' => $this->ssoBranchId,
         ];
     }
 }

@@ -26,7 +26,7 @@ class CreateBranch extends ServiceCommand
     public function payload(): array
     {
         return [
-            'ssoUserIdBranchOwner' => $this->ssoUserId,
+            'ssoUserIdBranchOwner' => $this->ssoUserIdBranchOwner,
             'ssoBranchId' => $this->ssoBranchId,
             'ssoUserIdBranchAdmin' => $this->ssoUserIdBranchAdmin,
         ];
