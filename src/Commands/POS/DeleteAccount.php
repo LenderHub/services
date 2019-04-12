@@ -4,16 +4,14 @@ namespace LHP\Services\Commands\POS;
 
 use LHP\Services\Commands\ServiceCommand;
 use LHP\Services\Events\Loanzify\AccountDeleted;
-use LHP\Services\Events\POS\AccountCreated;
 
 class DeleteAccount extends ServiceCommand
 {
     private $ssoUserId;
     
-    public function __construct(int $ssoId, int $smartappSiteProfileId)
+    public function __construct(int $ssoUserId)
     {
-        $this->ssoId = $ssoId;
-        $this->smartappSiteProfileId = $smartappSiteProfileId;
+        $this->ssoUserId = $ssoUserId;
     }
 
     public function expects(): string
