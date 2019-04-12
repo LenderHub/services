@@ -9,7 +9,7 @@ class LoanOfficerDeleted implements ServiceEvent
     private $ssoUserServiceId;
     private $posAccountUserId;
     
-    public function __construct(int $ssoUserServiceId, ?int $posAccountUserId)
+    public function __construct(?int $ssoUserServiceId, ?int $posAccountUserId)
     {
         $this->ssoUserServiceId = $ssoUserServiceId;
         $this->posAccountUserId = $posAccountUserId;

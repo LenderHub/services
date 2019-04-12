@@ -8,11 +8,13 @@ use LHP\Services\Events\POS\LoanOfficerDeleted;
 
 class DeleteLoanOfficer extends ServiceCommand
 {
-    private $ssoUserServiceId;
+    private $ssoUserId;
+    private $ssoUserIdOwner;
     
-    public function __construct(int $ssoUserServiceId)
+    public function __construct(int $ssoUserServiceId, int $ssoUserIdOwner)
     {
-        $this->ssoUserServiceId = $ssoUserServiceId;
+        $this->ssoUserId = $ssoUserServiceId;
+        $this->ssoUserIdOwner = $ssoUserIdOwner;
     }
 
     public function expects(): string
@@ -23,7 +25,8 @@ class DeleteLoanOfficer extends ServiceCommand
     public function payload(): array
     {
         return [
-            'ssoUserServiceId' => $this->ssoUserServiceId,
+            'ssoUserId' => $this->ssoUserId,
+            'ssoUserIdOwner' => $this->ssoUserIdOwner
         ];
     }
 }
