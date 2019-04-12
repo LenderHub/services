@@ -3,7 +3,8 @@
 namespace LHP\Services\Commands\POS;
 
 use LHP\Services\Commands\ServiceCommand;
-use LHP\Services\Events\Loanzify\AccountDeleted;
+use LHP\Services\Events\POS\AccountDeleted;
+
 
 class DeleteAccount extends ServiceCommand
 {
