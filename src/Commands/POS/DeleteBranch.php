@@ -8,8 +8,6 @@ use LHP\Services\Events\POS\BranchDeleted;
 class DeleteBranch extends ServiceCommand
 {
     private $ssoBranchId;
-    private $ssoUserId;
-    private $ssoUserIdOwner;
     
     public function __construct(int $ssoBranchId)
     {
