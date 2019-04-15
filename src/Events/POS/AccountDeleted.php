@@ -4,25 +4,22 @@ namespace LHP\Services\Events\POS;
 
 use LHP\Services\Events\Contracts\ServiceEvent;
 
-class UserCreated implements ServiceEvent
+class AccountDeleted implements ServiceEvent
 {
+    private $ssoUserId;
     private $posAccountId;
-    private $posAccountUserId;
     
-    public function __construct(int $posAccountId, int $posAccountUserId)
+    public function __construct(int $ssoUserId, ?int $posAccountId)
     {
+        $this->ssoUserId = $ssoUserId;
         $this->posAccountId = $posAccountId;
-        $this->posAccountUserId = $posAccountUserId;
     }
-
-    /**
-     * @return array
-     */
+    
     public function toArray(): array
     {
         return [
+            'ssoUserId' => $this->ssoUserId,
             'posAccountId' => $this->posAccountId,
-            'posAccountUserId' => $this->posAccountUserId,
         ];
     }
 }
