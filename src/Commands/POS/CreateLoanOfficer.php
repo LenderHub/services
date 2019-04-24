@@ -9,12 +9,14 @@ class CreateLoanOfficer extends ServiceCommand
 {
     private $ssoUserId;
     private $ssoParentUserId;
+    private $smartappLoanOfficerId;
     private $ssoBranchId;
     
-    public function __construct(int $ssoUserId, int $ssoParentUserId, ?int $ssoBranchId)
+    public function __construct(int $ssoUserId, int $ssoParentUserId, int $smartappLoanOfficerId, ?int $ssoBranchId)
     {
         $this->ssoUserId = $ssoUserId;
         $this->ssoParentUserId = $ssoParentUserId;
+        $this->smartappLoanOfficerId = $smartappLoanOfficerId;
         $this->ssoBranchId = $ssoBranchId;
     }
 
@@ -28,6 +30,7 @@ class CreateLoanOfficer extends ServiceCommand
         return [
             'ssoUserId' => $this->ssoUserId,
             'ssoParentUserId' => $this->ssoParentUserId,
+            'smartappLoanOfficerId' => $this->smartappLoanOfficerId,
             'ssoBranchId' => $this->ssoBranchId,
         ];
     }
