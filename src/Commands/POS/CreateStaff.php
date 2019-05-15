@@ -3,7 +3,7 @@
 namespace LHP\Services\Commands\POS;
 
 use LHP\Services\Commands\ServiceCommand;
-use LHP\Services\Events\POS\LoanOfficerCreated;
+use LHP\Services\Events\POS\StaffCreated;
 
 class CreateStaff extends ServiceCommand
 {
@@ -20,7 +20,7 @@ class CreateStaff extends ServiceCommand
 
     public function expects(): string
     {
-        return LoanOfficerCreated::class;
+        return StaffCreated::class;
     }
 
     public function payload(): array
