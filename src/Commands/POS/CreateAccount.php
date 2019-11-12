@@ -11,17 +11,15 @@ class CreateAccount extends ServiceCommand
      * @var int
      */
     private $ssoId;
-    private $smartappSiteProfileId;
 
     /**
      * CreateStandardAccount constructor.
      *
      * @param int $ssoId
      */
-    public function __construct(int $ssoId, int $smartappSiteProfileId)
+    public function __construct(int $ssoId)
     {
         $this->ssoId = $ssoId;
-        $this->smartappSiteProfileId = $smartappSiteProfileId;
     }
 
     /**
@@ -43,7 +41,6 @@ class CreateAccount extends ServiceCommand
     {
         return [
             'ssoId' => $this->ssoId,
-            'smartappSiteProfileId' => $this->smartappSiteProfileId,
         ];
     }
 }
