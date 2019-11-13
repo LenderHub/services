@@ -10,18 +10,15 @@ class CreateBranch extends ServiceCommand
     private $ssoUserIdBranchOwner;
     private $ssoBranchId;
     private $ssoUserIdBranchAdmin;
-    private $smartappSiteProfileId;
-    
+
     public function __construct(
-        int $ssoUserIdBranchOwner, 
-        int $ssoBranchId, 
-        int $ssoUserIdBranchAdmin, 
-        int $smartappSiteProfileId
+        int $ssoUserIdBranchOwner,
+        int $ssoBranchId,
+        int $ssoUserIdBranchAdmin
     ) {
         $this->ssoUserIdBranchOwner = $ssoUserIdBranchOwner;
         $this->ssoBranchId = $ssoBranchId;
         $this->ssoUserIdBranchAdmin = $ssoUserIdBranchAdmin;
-        $this->smartappSiteProfileId = $smartappSiteProfileId;
     }
 
     public function expects(): string
@@ -35,7 +32,6 @@ class CreateBranch extends ServiceCommand
             'ssoUserIdBranchOwner' => $this->ssoUserIdBranchOwner,
             'ssoBranchId' => $this->ssoBranchId,
             'ssoUserIdBranchAdmin' => $this->ssoUserIdBranchAdmin,
-            'smartappSiteProfileId' => $this->smartappSiteProfileId,
         ];
     }
 }
