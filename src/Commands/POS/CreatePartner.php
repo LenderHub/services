@@ -9,13 +9,11 @@ class CreatePartner extends ServiceCommand
 {
     private $ssoUserId;
     private $ssoParentUserId;
-    private $ssoBranchId;
-    
-    public function __construct(int $ssoUserId, int $ssoParentUserId, ?int $ssoBranchId)
+
+    public function __construct(int $ssoUserId, int $ssoParentUserId)
     {
         $this->ssoUserId = $ssoUserId;
         $this->ssoParentUserId = $ssoParentUserId;
-        $this->ssoBranchId = $ssoBranchId;
     }
 
     public function expects(): string
