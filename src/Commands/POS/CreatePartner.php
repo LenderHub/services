@@ -9,11 +9,28 @@ class CreatePartner extends ServiceCommand
 {
     private $ssoUserId;
     private $ssoParentUserId;
+    /**
+     * @var string
+     */
+    private $firstName;
+    /**
+     * @var string
+     */
+    private $lastName;
 
-    public function __construct(int $ssoUserId, int $ssoParentUserId)
+    /**
+     * CreatePartner constructor.
+     * @param int $ssoUserId
+     * @param int $ssoParentUserId
+     * @param string $firstName
+     * @param string $lastName
+     */
+    public function __construct(int $ssoUserId, int $ssoParentUserId, string $firstName, string $lastName)
     {
         $this->ssoUserId = $ssoUserId;
         $this->ssoParentUserId = $ssoParentUserId;
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
     }
 
     public function expects(): string
@@ -26,6 +43,8 @@ class CreatePartner extends ServiceCommand
         return [
             'ssoUserId' => $this->ssoUserId,
             'ssoParentUserId' => $this->ssoParentUserId,
+            'firstName' => $this->firstName,
+            'lastName' => $this->lastName,
         ];
     }
 }

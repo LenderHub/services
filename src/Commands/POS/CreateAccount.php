@@ -11,15 +11,21 @@ class CreateAccount extends ServiceCommand
      * @var int
      */
     private $ssoId;
+    /**
+     * @var string
+     */
+    private $companyName;
 
     /**
      * CreateStandardAccount constructor.
      *
      * @param int $ssoId
+     * @param string $companyName
      */
-    public function __construct(int $ssoId)
+    public function __construct(int $ssoId, string $companyName)
     {
         $this->ssoId = $ssoId;
+        $this->companyName = $companyName;
     }
 
     /**
@@ -41,6 +47,7 @@ class CreateAccount extends ServiceCommand
     {
         return [
             'ssoId' => $this->ssoId,
+            'companyName' => $this->companyName,
         ];
     }
 }
