@@ -12,14 +12,29 @@ class UpdateAccountUserServiceId extends ServiceCommand
     private $posAccountUserId;
     private $ssoUserServiceId;
     private $ssoUserId;
+    /**
+     * @var string
+     */
+    private $email;
+    /**
+     * @var string
+     */
+    private $firstName;
+    /**
+     * @var string
+     */
+    private $lastName;
 
-    public function __construct(bool $isCreatingAccount, int $posAccountId, int $posAccountUserId, int $ssoUserServiceId, int $ssoUserId)
+    public function __construct(bool $isCreatingAccount, int $posAccountId, int $posAccountUserId, int $ssoUserServiceId, int $ssoUserId, string $email, string $firstName, string $lastName)
     {
         $this->isCreatingAccount = $isCreatingAccount;
         $this->posAccountId = $posAccountId;
         $this->posAccountUserId = $posAccountUserId;
         $this->ssoUserServiceId = $ssoUserServiceId;
         $this->ssoUserId = $ssoUserId;
+        $this->email = $email;
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
     }
 
     /**
@@ -45,6 +60,9 @@ class UpdateAccountUserServiceId extends ServiceCommand
             'posAccountUserId' => $this->posAccountUserId,
             'ssoUserServiceId' => $this->ssoUserServiceId,
             'ssoUserId' => $this->ssoUserId,
+            'email' => $this->email,
+            'firstName' => $this->firstName,
+            'lastName' => $this->lastName,
         ];
     }
 }
