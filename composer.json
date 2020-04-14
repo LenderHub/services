@@ -11,7 +11,12 @@
     },
     "autoload": {
         "psr-4": {
-            "LHP\\Services\\": "src"
+            "LHP\\Services\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LHP\\Services\\Tests\\": "tests/"
         }
     },
     "extra": {
@@ -20,5 +25,8 @@
                 "LHP\\Services\\ApiServiceProvider"
             ]
         }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^5.1"
     }
 }
